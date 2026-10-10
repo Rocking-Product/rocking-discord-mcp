@@ -2,8 +2,6 @@
 
 This checklist distinguishes a tested local candidate from an accepted production release. Release version: `0.1.0-alpha.1`. No public package or production deployment is claimed.
 
-## Local candidate
-
 ## Verified candidate evidence
 
 Captured on 2026-10-10 for runtime commit `d3490d8f2a8fab07685a4d8eed614b563c00c735`, package `0.1.0-alpha.1`, SHA-256 `E1CCB9A2661D1E0A6B2E2ACF06FE226A522BFD5D6D93080B4B595A02AEF5594E`:
@@ -11,9 +9,11 @@ Captured on 2026-10-10 for runtime commit `d3490d8f2a8fab07685a4d8eed614b563c00c
 - 36 automated tests passed locally; [CI 38063981013](https://github.com/Rocking-Product/rocking-discord-mcp/actions/runs/38063981013) passed on Windows and Ubuntu for that exact commit.
 - The installed tarball used a real MCP stdio client and Discord sandbox for bounded reads, exact out-of-scope rejection and two explicitly approved synthetic sends. Both texts were read back; a separate bounded official read confirmed reply linkage, suppression flags, no embeds and no mentions.
 - A fresh read-only process after those sends exposed four read tools with send absent and continued to enforce the sandbox boundary.
+- A member-specific temporary View Channel deny made the real MCP read fail with `ACCESS_UNAVAILABLE`. The original category synchronization and absence of a Jax member override were restored; a fresh read-only process read the fixture channel successfully afterward. No production permissions were changed.
+- The maintainer-approved security mailbox received an authorized synthetic report, observed in its Inbox. This verifies delivery only; GitHub reporting and a published response-time commitment remain separate.
 - Gitleaks 8.30.1 found no secrets in the tarball. Full Git history had two reviewed synthetic-ID fixtures in `tests/stdio.test.ts`; neither is a real credential. Reports and operational identifiers remain in ignored private evidence storage.
 
-These facts do not establish live permission revocation, security-contact receipt, public package availability or personal DM access. Later source or package changes require refreshed evidence; a documentation commit does not change the artifact identified above.
+These facts do not establish public package availability, a production deployment or personal DM access. Later source or package changes require refreshed evidence; a documentation commit does not change the artifact identified above.
 
 ## Candidate preparation commands
 

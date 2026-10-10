@@ -8,11 +8,11 @@ The connector currently supports the bot-channel path only. It does not access t
 
 ## Reporting a vulnerability
 
-The maintainer-approved private contact is **Francisco Leguizamón**, at **[fleguizamon@rockingproduct.com](mailto:fleguizamon@rockingproduct.com)**. Use a subject such as `Discord MCP security report` and synthetic reproduction details. The maintainer supplied this destination on 2026-10-10; delivery and receipt of a non-sensitive test report have not yet been verified. No response-time commitment is active.
+The maintainer-approved private contact is **Francisco Leguizamón**, at **[fleguizamon@rockingproduct.com](mailto:fleguizamon@rockingproduct.com)**. Use a subject such as `Discord MCP security report` and synthetic reproduction details. The maintainer supplied this destination on 2026-10-10; an authorized non-sensitive test email was delivered and observed in that mailbox's Inbox on the same date. This verifies delivery, not a response-time commitment or ongoing monitoring.
 
 **GitHub private vulnerability reporting is not yet activated or verified for this repository.** Before production use, public release, or inviting security testing, verify the private contact's receipt of a synthetic report. GitHub documents [how to enable private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository); after activation, maintainers must verify submission and notifications separately.
 
-Until receipt is verified, contact the designated maintainer without sensitive evidence. Do not post exploit details, credentials, private messages, or other sensitive evidence in public issues or discussions. Do not send sensitive report details until the maintainer confirms the private route works.
+Do not post exploit details, credentials, private messages, or other sensitive evidence in public issues or discussions. Send a minimal private report to the designated maintainer, without credentials or private Discord content. Agree on secure handling before sharing additional sensitive evidence.
 
 GitHub documents private vulnerability reporting for public repositories. While this repository is private, maintainers must establish and test an alternative private contact route before source publication, following [the publication sequence](docs/release-checklist.md#private-to-public-disclosure-sequence). Source visibility, a package release and a verified reporting route are separate steps; none proves the others are complete.
 
