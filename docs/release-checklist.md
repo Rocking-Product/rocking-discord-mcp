@@ -31,6 +31,12 @@ Use an authorized test channel and the approved bot. Keep actual IDs/configurati
 
 Record: repository under Rocking, exact commit/tag, CI URL, artifact hash and fresh-install success; license and notices; protected release permissions/provenance; active private vulnerability-reporting route tested with a synthetic report; responsible maintainers; truthful capabilities/known limitations. Add MCP Registry metadata only after the repository/package namespace is verified.
 
+### Private-to-public disclosure sequence
+
+[GitHub private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository) is documented for public repositories. The current private repository returned HTTP 404 for its reporting-status endpoint; that response alone does not prove whether reporting is enabled. Do not require a successful public reporting submission while keeping the repository private, or mark a settings request as a tested disclosure route.
+
+Before making source public, Rocking must identify and verify an alternative private contact route with a non-sensitive test and a responsible maintainer. Record the actual destination and notification result privately; publish only the maintainer-approved contact instructions in `SECURITY.md`. No mailbox or owner is assumed. After approved source publication, enable GitHub reporting, verify submission and notifications, then update the policy to the tested route. Package release and promotional invitations remain gated on live pilot acceptance and disclosure readiness. If no alternative private route is available, obtain a concrete maintainer-approved publication sequence before changing visibility; do not silently waive this gate.
+
 Publish no personal DM claim until the separate V2 approval and history-coverage gate succeeds. Channel V1 can be released independently under the explicitly approved sequence.
 
 ## Rollback and incident handling

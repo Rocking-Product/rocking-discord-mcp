@@ -12,6 +12,8 @@ The connector currently supports the bot-channel path only. It does not access t
 
 Until a private route is verified, do not post exploit details, credentials, private messages, or other sensitive evidence in public issues or discussions. Contact a repository administrator without including sensitive details and ask them to activate the GitHub reporting flow. This policy intentionally does not invent an email address or imply that another private channel is active. Do not send the report itself until maintainers verify a secure route.
 
+GitHub documents private vulnerability reporting for public repositories. While this repository is private, maintainers must establish and test an alternative private contact route before source publication, following [the publication sequence](docs/release-checklist.md#private-to-public-disclosure-sequence). Source visibility, a package release and a verified reporting route are separate steps; none proves the others are complete.
+
 When reporting becomes available, include the affected revision, impact, reproduction steps using synthetic data, and mitigations if known. Redact tokens, Discord content, real guild/channel/user IDs, and private URLs. Do not test against servers or accounts without authorization.
 
 ## Scope and limits
