@@ -1,6 +1,6 @@
 ﻿# Local setup
 
-This guide describes the current **bot-channel V1 path** for a local MCP host. The package is `0.1.0-alpha.1`: automated tests and a read-only live sandbox smoke test have passed. Full real Discord acceptance and production release remain open; see [release gates](release-checklist.md).
+This guide describes the current **bot-channel V1 path** for a local MCP host. The package is available as a [GitHub alpha prerelease](https://github.com/Rocking-Product/rocking-discord-mcp/releases/tag/v0.1.0-alpha.1). Automated tests and live sandbox read/write/reply, revocation/recovery and restart checks passed. Install the verified attached tarball following the [README](../README.md#install-the-github-alpha), or build from source below. No npm publication or production security certification is claimed; see [release evidence](release-checklist.md).
 
 The approved sequence is V1 channels end to end, then V2 complete history of the logged-in person's existing DM conversations. V2 authorization, feasibility, historical coverage, and acceptance are unresolved. It means full conversation history, not selected messages. Personal-account DMs and bot DMs are not available through the current connector, and bot DMs do not satisfy V2.
 
@@ -18,7 +18,7 @@ The bot needs only the permissions required for the enabled operations. For chan
 From the repository root:
 
 ```sh
-npm ci
+npm ci --ignore-scripts
 npm run build
 ```
 

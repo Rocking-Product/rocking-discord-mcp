@@ -1,6 +1,6 @@
 # Release evidence and operations
 
-This checklist distinguishes a tested local candidate from an accepted production release. Release version: `0.1.0-alpha.1`. No public package or production deployment is claimed.
+This checklist distinguishes a tested candidate from an accepted production release. Version `0.1.0-alpha.1` is a [public GitHub prerelease](https://github.com/Rocking-Product/rocking-discord-mcp/releases/tag/v0.1.0-alpha.1), not an npm publication or production deployment. Its source commit is `0ce7c623039b6645e5b05bb8d80b0479481128b9`; tarball SHA-256 is `cbd994c52f19367ad47880f5a3f47f21573100d48eecf5e2196d553532c84bb3`. Anonymous download checksum and fresh-install sandbox read passed. All eight runtime files match the earlier live write/revocation-tested candidate byte for byte.
 
 ## Verified candidate evidence
 
