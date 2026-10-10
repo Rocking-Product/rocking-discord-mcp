@@ -2,7 +2,7 @@
 
 ## Current security status
 
-This repository describes a local, single-operator MCP process authenticated to Discord with a bot token. Version `0.1.0-alpha.1` has passing automated tests and a read-only live sandbox smoke test. Security review found and fixed cancellation/error-boundary defects; full live acceptance and release gates remain open. No production security assurance is claimed.
+This repository describes a local, single-operator MCP process authenticated to Discord with a bot token. Version `0.1.0-alpha.1` has passing automated tests and live sandbox read/write/reply checks followed by a read-only restart. Security review and CI found and fixed cancellation/error-boundary defects and an early cooldown timer wake. Live permission revocation and release gates remain open. No production security assurance is claimed.
 
 The connector currently supports the bot-channel path only. It does not access the logged-in person's personal DMs. Complete history across the user's existing DM conversations is an approved V2 goal, subject to official feasibility, required Discord approval, demonstrated history coverage, and real-account acceptance. Selected-message interactions and bot DMs are not substitutes. Self-bots, copied personal tokens, and browser/session-cookie access are out of scope.
 
