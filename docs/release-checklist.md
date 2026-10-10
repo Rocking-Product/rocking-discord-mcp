@@ -10,6 +10,7 @@ This checklist distinguishes a tested local candidate from an accepted productio
 - Run `npm pack --dry-run --json`; confirm only documented distribution files, no tests, `.env`, `.local`, real identifiers, credentials or workspace artifacts. `prepack` rebuilds the executable to avoid shipping stale output.
 - Run `npm run verify:package` after building; it verifies npm's actual file inventory against an explicit distribution allowlist. It does not replace a content/secret scan.
 - Generate `npm sbom --sbom-format=cyclonedx --omit=dev` and keep the inventory with the exact release evidence.
+- Refresh [the dependency license inventory](dependency-licenses.md) from that SBOM. The current npm package does not bundle third-party code; preserve installed dependency notices if redistributing a complete installation.
 - Run a secret scan on the complete candidate, including Git history, before making it public. Manually inspect the tarball and review third-party licenses/notices.
 
 CI is configured for Windows and Ubuntu using pinned action revisions with read-only repository permissions. Its configuration being present does not prove a remote CI run passed. Record the run URL and exact SHA after pushing.
