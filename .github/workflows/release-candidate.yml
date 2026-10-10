@@ -1,0 +1,47 @@
+# Build a reviewable package candidate from the selected repository commit.
+# This workflow uploads evidence only; publication and live acceptance have separate gates.
+name: Release candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+          cache: npm
+      # Install from the committed lockfile without running dependency lifecycle scripts.
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm run verify:package
+      - name: Assemble candidate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir candidate
+          tarball="$(npm pack --pack-destination candidate --silent)"
+          [[ "$tarball" == *.tgz && "$tarball" != */* ]]
+          sha256sum "candidate/$tarball" > "candidate/$tarball.sha256"
+          npm sbom --sbom-format=cyclonedx --omit=dev > candidate/sbom.cdx.json
+          printf 'git_sha=%s\npackage=%s\nversion=%s\n' \
+            "$GITHUB_SHA" \
+            "$(node -p 'require("./package.json").name')" \
+            "$(node -p 'require("./package.json").version')" \
+            > candidate/manifest.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: release-candidate-${{ github.run_id }}
+          path: candidate/
+          if-no-files-found: error
+          retention-days: 14

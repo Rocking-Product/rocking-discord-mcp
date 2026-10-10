@@ -8,7 +8,7 @@ The connector currently supports the bot-channel path only. It does not access t
 
 ## Reporting a vulnerability
 
-The maintainer-approved private contact is **Francisco Leguizamón**, at **[fleguizamon@rockingproduct.com](mailto:fleguizamon@rockingproduct.com)**. Use a subject such as `Discord MCP security report` and synthetic reproduction details. The maintainer supplied this destination on 2026-10-10; an authorized non-sensitive test email was delivered and observed in that mailbox's Inbox on the same date. This verifies delivery, not a response-time commitment or ongoing monitoring.
+The maintainer-approved private contact is **Francisco LeguizamÃ³n**, at **[fleguizamon@rockingproduct.com](mailto:fleguizamon@rockingproduct.com)**. Use a subject such as `Discord MCP security report` and synthetic reproduction details. The maintainer supplied this destination on 2026-10-10; an authorized non-sensitive test email was delivered and observed in that mailbox's Inbox on the same date. This verifies delivery, not a response-time commitment or ongoing monitoring.
 
 **GitHub private vulnerability reporting is not yet activated or verified for this repository.** Before production use, public release, or inviting security testing, verify the private contact's receipt of a synthetic report. GitHub documents [how to enable private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository); after activation, maintainers must verify submission and notifications separately.
 

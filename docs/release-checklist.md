@@ -28,6 +28,10 @@ These facts do not establish public package availability, a production deploymen
 
 CI is configured for Windows and Ubuntu using pinned action revisions with read-only repository permissions. Its configuration being present does not prove a remote CI run passed. Record the run URL and exact SHA after pushing.
 
+### Remote candidate before release
+
+The manual `Release candidate` workflow prepares a tarball, SHA-256, CycloneDX production SBOM and build metadata on a clean runner. It runs the candidate checks first and uploads only these explicit files. It receives no Discord credentials and does not publish to npm, create a GitHub release or change repository visibility. A successful upload is build evidence, not live Discord acceptance or cryptographically signed provenance. Download the exact artifact, verify its checksum, fresh-install it and confirm executable behavior before attaching it to a release. Keep the workflow run URL and full commit with the released files; do not replace a reviewed tarball with a later rebuild under the same claim.
+
 ## Live pilot acceptance
 
 Use an authorized test channel and the approved bot. Keep actual IDs/configuration/evidence in ignored private storage.
