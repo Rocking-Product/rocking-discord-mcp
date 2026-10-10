@@ -661,12 +661,16 @@ export class DiscordService {
     if ((this.deniedUntil.get(major) ?? 0) > this.now()) throw new SafeError('ACCESS_UNAVAILABLE');
     const bucket = this.routeBuckets.get(route);
     const pause = Math.max(this.globalPauseUntil, bucket ? this.bucketPauseUntil.get(`${bucket}:${major}`) ?? 0 : 0);
-    const wait = pause - this.now();
-    if (wait <= 0) return;
-    if (wait >= deadline - this.now()) throw new SafeError('RATE_LIMITED');
-    await this.bound(this.sleep(wait), deadline, 'DEADLINE_EXCEEDED', signal);
-    // SECURITY: A fake or early-returning sleeper must not bypass Discord's pause.
-    if (pause > this.now()) throw new SafeError('RATE_LIMITED');
+    let wait = pause - this.now();
+    while (wait > 0) {
+      if (wait >= deadline - this.now()) throw new SafeError('RATE_LIMITED');
+      await this.bound(this.sleep(wait), deadline, 'DEADLINE_EXCEEDED', signal);
+      const remaining = pause - this.now();
+      // SECURITY: A timer may wake slightly early, but an inert test sleeper
+      // must not spin forever or dispatch before Discord's pause expires.
+      if (remaining >= wait) throw new SafeError('RATE_LIMITED');
+      wait = remaining;
+    }
   }
 
   /** Learn bucket identity and proactive reset only from bounded numeric headers. */

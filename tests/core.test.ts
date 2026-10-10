@@ -345,6 +345,47 @@ test('read 429 may retry twice, while a write is never retried', async () => {
   assert.equal(writeFake.calls.length, 3);
 });
 
+test('an early timer wake waits out the remaining 429 pause before retrying', async () => {
+  let clock = 1_000;
+  const waits: number[] = [];
+  const fake = peer(
+    json({ id: GUILD, bot: true, username: 'bot' }),
+    json({ retry_after: 0.01 }, 429),
+    json({ id: GUILD, name: 'Rocking' }),
+  );
+  const fetcher: typeof fetch = async (input, init) => {
+    if (fake.calls.length === 2) assert.equal(clock, 1_010, 'retry must observe the full cooldown');
+    return fake.fetcher(input, init);
+  };
+  const reader = new DiscordService(config(), {
+    fetch: fetcher,
+    now: () => clock,
+    sleep: async milliseconds => {
+      waits.push(milliseconds);
+      // Model the first timer waking one millisecond before its requested delay.
+      clock += waits.length === 1 ? milliseconds - 1 : milliseconds;
+    },
+  });
+  assert.deepEqual((await reader.listGuilds()).guilds, [{ id: GUILD, name: 'Rocking' }]);
+  assert.deepEqual(waits, [10, 1]);
+  assert.equal(fake.calls.length, 3);
+});
+
+test('an inert sleeper cannot bypass a 429 pause or spin indefinitely', async () => {
+  const fake = peer(
+    json({ id: GUILD, bot: true, username: 'bot' }),
+    json({ retry_after: 0.01 }, 429),
+  );
+  const reader = new DiscordService(config(), {
+    fetch: fake.fetcher,
+    now: () => 1_000,
+    sleep: async () => undefined,
+  });
+  await assert.rejects(reader.listGuilds(),
+    (error: unknown) => error instanceof SafeError && error.code === 'RATE_LIMITED');
+  assert.equal(fake.calls.length, 2);
+});
+
 test('send validates reply channel and suppresses every mention', async () => {
   const writes = config({ DISCORD_ENABLE_WRITES: 'true', DISCORD_WRITE_CHANNEL_IDS: CHANNEL });
   const badReply = peer(
