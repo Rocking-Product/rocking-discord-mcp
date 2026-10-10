@@ -23,7 +23,17 @@ Do not submit until Rocking's responsible maintainer and correct official suppor
 >
 > We can provide a synthetic test plan and threat model. Please clarify whether the documented RPC `messages.read` path supports this exact use case or only a limited client window. If complete history is unavailable, we will document that limitation rather than market partial access as complete.
 
-## Architecture once feasibility is proven
+## Official documentation recheck: 2026-10-10
+
+The [OAuth2 scope table](https://docs.discord.com/developers/topics/oauth2) describes `dm_channels.read` as DM/GDM information for approved partners, and `messages.read` as reading client-channel messages through local RPC. Neither description establishes complete personal conversation history access. `rpc` also requires approval.
+
+The [RPC reference](https://docs.discord.com/developers/topics/rpc) limits unapproved applications to configured testers; public access requires approval. Its `rpc_token` authorization bypass cannot grant `messages.read`. `GET_CHANNEL` returns a message array without a documented historical-pagination contract; `GET_CHANNELS` enumerates guild channels. The documented command list does not provide `GET_MESSAGES`.
+
+The [REST Get Channel Messages endpoint](https://docs.discord.com/developers/resources/message) supports paginated message history, but its presence does not establish an OAuth-authorized personal-DM provider or complete DM enumeration. Combining RPC scope descriptions with that REST endpoint would be an unverified inference. The [self-bot prohibition](https://support.discord.com/hc/en-us/articles/115002192352-Automated-User-Accounts-Self-Bots) rules out replacing this missing contract with personal account tokens.
+
+Decision: retain the full requirement and the approval/coverage gate above. Ask Discord to confirm eligible endpoints, both-direction historical coverage and distribution requirements before implementing the personal provider. No official public contract reviewed here proves all three.
+
+## Provider implementation boundary
 
 Implement a separately authenticated provider behind the MCP adapter's port. Split personal and guild sessions/credentials/configuration; no automatic fallback between identities. Scope tools to the authenticated principal and granted conversation set. Design OAuth state/PKCE/redirect validation, secure storage, expiry and revocation before code. Add a distinct capability report with evidenced history coverage. The bot provider must continue to advertise personal DM access as false.
 
