@@ -1,10 +1,10 @@
-﻿# Rocking Discord MCP
+# Rocking Discord MCP
 
 Local MCP server for using a Discord bot to inspect explicitly allowlisted server channels. The project is designed around narrow permissions, bounded reads, untrusted-message handling, and opt-in writes.
 
 ## Status
 
-The package manifest declares version `0.1.0-alpha.1`. This is an unreleased alpha: 36 automated tests pass, including a real stdio subprocess with synthetic Discord responses. An installed tarball completed live sandbox reads, two explicitly approved message/reply sends, exact content verification, and a subsequent read-only restart. It denied an out-of-scope guild; reply references, preview suppression and absence of mentions were verified. Live permission revocation and release gates remain open. See [candidate evidence](docs/release-checklist.md#verified-candidate-evidence). The package name and publication status on npm are unconfirmed. Do not treat this as a released `npx` package or as production-ready.
+The package manifest declares version `0.1.0-alpha.1`. This is an unreleased alpha: 36 automated tests pass, including a real stdio subprocess with synthetic Discord responses. An installed tarball completed live sandbox reads, two explicitly approved message/reply sends, exact content verification, and a subsequent read-only restart. It denied an out-of-scope guild; reply references, preview suppression and absence of mentions were verified. Live permission revocation and recovery were also verified; publication gates remain open. See [candidate evidence](docs/release-checklist.md#verified-candidate-evidence). The package name and publication status on npm are unconfirmed. Do not treat this as a released `npx` package or as production-ready.
 
 The approved product sequence is:
 
@@ -61,3 +61,4 @@ Read [SECURITY.md](SECURITY.md) and [the security specification](docs/specs/secu
 ## License
 
 MIT; see [LICENSE](LICENSE).
+

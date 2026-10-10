@@ -1,14 +1,14 @@
-﻿# Security policy
+# Security policy
 
 ## Current security status
 
-This repository describes a local, single-operator MCP process authenticated to Discord with a bot token. Version `0.1.0-alpha.1` has passing automated tests and live sandbox read/write/reply checks followed by a read-only restart. Security review and CI found and fixed cancellation/error-boundary defects and an early cooldown timer wake. Live permission revocation and release gates remain open. No production security assurance is claimed.
+This repository describes a local, single-operator MCP process authenticated to Discord with a bot token. Version `0.1.0-alpha.1` has passing automated tests and live sandbox read/write/reply checks followed by a read-only restart. Security review and CI found and fixed cancellation/error-boundary defects and an early cooldown timer wake. Live permission revocation and recovery were verified; publication gates remain open. No production security assurance is claimed.
 
 The connector currently supports the bot-channel path only. It does not access the logged-in person's personal DMs. Complete history across the user's existing DM conversations is an approved V2 goal, subject to official feasibility, required Discord approval, demonstrated history coverage, and real-account acceptance. Selected-message interactions and bot DMs are not substitutes. Self-bots, copied personal tokens, and browser/session-cookie access are out of scope.
 
 ## Reporting a vulnerability
 
-The maintainer-approved private contact is **Francisco Leguizamón**, at **[fleguizamon@rockingproduct.com](mailto:fleguizamon@rockingproduct.com)**. Use a subject such as `Discord MCP security report` and synthetic reproduction details. The maintainer supplied this destination on 2026-10-10; an authorized non-sensitive test email was delivered and observed in that mailbox's Inbox on the same date. This verifies delivery, not a response-time commitment or ongoing monitoring.
+The maintainer-approved private contact is **Francisco Leguizam�n**, at **[fleguizamon@rockingproduct.com](mailto:fleguizamon@rockingproduct.com)**. Use a subject such as `Discord MCP security report` and synthetic reproduction details. The maintainer supplied this destination on 2026-10-10; an authorized non-sensitive test email was delivered and observed in that mailbox's Inbox on the same date. This verifies delivery, not a response-time commitment or ongoing monitoring.
 
 **GitHub private vulnerability reporting is not yet activated or verified for this repository.** Before production use, public release, or inviting security testing, verify the private contact's receipt of a synthetic report. GitHub documents [how to enable private vulnerability reporting](https://docs.github.com/en/code-security/how-tos/report-and-fix-vulnerabilities/configure-vulnerability-reporting/configure-for-a-repository); after activation, maintainers must verify submission and notifications separately.
 
@@ -35,3 +35,4 @@ Before production use or public release, maintainers need to:
 5. Publish a sanitized advisory or release note when appropriate, without exposing users or private Discord data.
 
 No response-time promise is active until maintainers set and publish one.
+
