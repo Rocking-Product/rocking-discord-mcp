@@ -1,0 +1,21 @@
+{
+  "name": "rocking-discord-mcp",
+  "version": "0.1.0-alpha.1",
+  "description": "Security-first Discord MCP connector by Rocking, with explicit channel boundaries",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "bin": { "rocking-discord-mcp": "dist/src/index.js" },
+  "files": ["dist/src", "README.md", "LICENSE", "SECURITY.md", "docs/specs", "docs/setup.md"],
+  "repository": { "type": "git", "url": "https://github.com/Rocking-Product/rocking-discord-mcp.git" },
+  "keywords": ["mcp", "discord", "model-context-protocol", "rocking"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/*.test.js",
+    "check": "npm test",
+    "start": "node dist/src/index.js",
+    "prepack": "npm run build"
+  },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.32.1", "zod": "4.6.5" },
+  "devDependencies": { "@types/node": "22.20.5", "typescript": "7.0.2" }
+}
