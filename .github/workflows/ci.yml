@@ -23,4 +23,4 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm run check
       - run: npm audit --omit=dev --audit-level=high
-      - run: npm pack --dry-run
+      - run: npm run verify:package

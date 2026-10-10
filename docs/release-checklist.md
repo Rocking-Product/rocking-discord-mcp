@@ -8,6 +8,7 @@ This checklist distinguishes a tested local candidate from an accepted productio
 - Run `npm run check`: includes core policy/transport tests, MCP client tests and an actual CLI/stdio subprocess with a synthetic HTTP preload. The preload is a test-only file excluded from the package.
 - Run `npm audit --omit=dev --audit-level=high`; review all production dependency findings. A zero result is a point-in-time advisory check, not an independent security certification.
 - Run `npm pack --dry-run --json`; confirm only documented distribution files, no tests, `.env`, `.local`, real identifiers, credentials or workspace artifacts. `prepack` rebuilds the executable to avoid shipping stale output.
+- Run `npm run verify:package` after building; it verifies npm's actual file inventory against an explicit distribution allowlist. It does not replace a content/secret scan.
 - Generate `npm sbom --sbom-format=cyclonedx --omit=dev` and keep the inventory with the exact release evidence.
 - Run a secret scan on the complete candidate, including Git history, before making it public. Manually inspect the tarball and review third-party licenses/notices.
 
